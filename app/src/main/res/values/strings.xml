@@ -2,4 +2,5 @@
     <string name="app_name">Easy QR</string>
     <string name="naver_client_id">DXxAOyT3cNJXqDaCjFOT</string>
     <string name="naver_client_name">EasyQR</string>
+    <string name="logout">로그아웃</string>
 </resources>
