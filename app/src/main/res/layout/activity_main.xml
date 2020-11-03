@@ -7,19 +7,17 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.nhn.android.naverlogin.ui.view.OAuthLoginButton
+    <Button
         android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login" />
 
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:text="@string/logout"
-        android:background="#1EC800"/>
+        android:text="@string/logout" />
+
 
 </LinearLayout>

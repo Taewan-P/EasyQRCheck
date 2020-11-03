@@ -1,40 +1,53 @@
 package page.chungjungsoo.easyqr
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import com.nhn.android.naverlogin.OAuthLogin;
-import com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler
-import com.nhn.android.naverlogin.OAuthLoginHandler;
-import com.nhn.android.naverlogin.ui.view.OAuthLoginButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-private val CLIENT_SECRET = BuildConfig.SECRET_KEY
-
+private var cookie : String = ""
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val CLIENT_ID = getString(R.string.naver_client_id)
-        val CLIENT_NAME = getString(R.string.naver_client_name)
-
-        val loginInstance = OAuthLogin.getInstance()
-        loginInstance.init(this, CLIENT_ID, CLIENT_SECRET, CLIENT_NAME)
-        val loginBtn: OAuthLoginButton = findViewById(R.id.loginBtn)
-        loginBtn.setOAuthLoginHandler(mOAuthLoginHandler)
-
-//        var loginHandler = OAuthLoginHandler() {
-//            override fun run()
-//        }
-        logoutBtn.setOnClickListener {
-            loginInstance.logout(this)
-            Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+        logoutBtn.visibility = View.GONE
+        loginBtn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivityForResult(intent, 101)
         }
 
+        logoutBtn.setOnClickListener {
+            cookie = ""
+            Toast.makeText(this, "Logged out.", Toast.LENGTH_SHORT).show()
+            loginBtn.visibility = View.VISIBLE
+            logoutBtn.visibility = View.GONE
+        }
+
+
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                101 -> {
+                    cookie = data!!.getStringExtra("cookie").toString()
+                    Toast.makeText(applicationContext, "Logged in successfully.", Toast.LENGTH_SHORT).show()
+                    Log.d("Loaded Cookie", cookie)
+                    loginBtn.visibility = View.GONE
+                    logoutBtn.visibility = View.VISIBLE
+
+                }
+            }
+        }
     }
 }
