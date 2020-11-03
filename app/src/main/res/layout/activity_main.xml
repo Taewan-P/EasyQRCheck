@@ -10,13 +10,21 @@
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="#1EC800"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="16sp"
         android:text="@string/login" />
 
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#999999"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:text="@string/logout" />
 
 
