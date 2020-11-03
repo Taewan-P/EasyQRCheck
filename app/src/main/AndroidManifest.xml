@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyQR">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
             <intent-filter>
@@ -19,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activities.LoginActivity">
         </activity>
     </application>
 

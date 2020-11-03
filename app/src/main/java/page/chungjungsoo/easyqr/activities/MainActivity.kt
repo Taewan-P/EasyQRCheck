@@ -1,16 +1,14 @@
-package page.chungjungsoo.easyqr
+package page.chungjungsoo.easyqr.activities
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import page.chungjungsoo.easyqr.R
 
 
 private var cookie : String = ""
