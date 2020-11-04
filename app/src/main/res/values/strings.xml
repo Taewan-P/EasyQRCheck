@@ -2,4 +2,8 @@
     <string name="app_name">Easy QR</string>
     <string name="logout">로그아웃</string>
     <string name="login">로그인</string>
+    <string name="qrcheck">QR Check</string>
+    <string name="login_needed">Login Needed</string>
+    <string name="okay">OK</string>
+    <string name="add_to_home_screen">Add to Home Screen</string>
 </resources>
