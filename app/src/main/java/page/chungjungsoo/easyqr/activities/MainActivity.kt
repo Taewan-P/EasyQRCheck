@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        testBtn.setOnClickListener{
+            val intent = Intent(this, PopupActivity::class.java)
+            startActivity(intent)
+        }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
