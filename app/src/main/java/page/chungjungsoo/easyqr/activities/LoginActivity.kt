@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginWebView.loadUrl("https://nid.naver.com/nidlogin.login")
         loginWebView.settings.javaScriptEnabled = true
-        loginWebView.settings.domStorageEnabled = true
+        loginWebView.settings.domStorageEnabled = false
         loginWebView.webViewClient = object : WebViewClient() {
             override fun doUpdateVisitedHistory(view: WebView?, url: String?, isReload: Boolean) {
                 if (url.toString() == "https://m.naver.com/" || url.toString() == "https://www.naver.com/") {
