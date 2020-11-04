@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.getSystemService
 import kotlinx.android.synthetic.main.activity_main.*
 import page.chungjungsoo.easyqr.R
 import page.chungjungsoo.easyqr.database.MyCookieDatabaseHelper
@@ -14,6 +16,7 @@ import page.chungjungsoo.easyqr.database.MyCookieDatabaseHelper
 
 class MainActivity : AppCompatActivity() {
     var cookieDBHandler : MyCookieDatabaseHelper? = null
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
