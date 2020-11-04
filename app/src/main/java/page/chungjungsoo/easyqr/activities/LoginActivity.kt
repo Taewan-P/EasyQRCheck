@@ -11,6 +11,7 @@ import page.chungjungsoo.easyqr.R
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.title = "Login to NAVER"
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         var cookies: String
