@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         cookieDBHandler = MyCookieDatabaseHelper(this)
 
         val cookies : String = cookieDBHandler!!.getCookies()
+        Log.d("LOADED COOKIES", cookies)
 
         if (cookies != "") {
             loginBtn.visibility = View.GONE
