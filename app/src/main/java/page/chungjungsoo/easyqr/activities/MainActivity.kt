@@ -2,6 +2,10 @@ package page.chungjungsoo.easyqr.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
+import android.graphics.drawable.Icon
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -51,6 +55,21 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PopupActivity::class.java)
             startActivity(intent)
         }
+
+        addHomeBtn.setOnClickListener {
+            val intent = Intent(this, PopupActivity::class.java)
+            intent.action = "QR_SHORTCUT"
+            val shortcutManager = this.getSystemService(ShortcutManager::class.java)
+            val shortcutInfo = ShortcutInfo.Builder(this, "QR Check")
+                .setIcon(Icon.createWithResource(this, R.drawable.qr_vector))
+                .setShortLabel("QR Check")
+                .setIntent(intent)
+                .build()
+
+            shortcutManager.requestPinShortcut(shortcutInfo, null)
+
+        }
+
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
