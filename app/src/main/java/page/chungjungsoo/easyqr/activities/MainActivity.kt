@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
             shortcutManager.requestPinShortcut(shortcutInfo, null)
-
+            finishAndRemoveTask()
         }
 
     }
