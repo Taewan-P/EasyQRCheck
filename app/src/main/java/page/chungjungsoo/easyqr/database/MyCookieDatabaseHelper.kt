@@ -67,6 +67,7 @@ class MyCookieDatabaseHelper(context: Context)
         }
         else {
             Log.e("DATABASE_ERROR", "GETTING COOKIES HAS FAILED.")
+            result = ""
         }
         cursor.close()
         db.close()
