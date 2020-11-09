@@ -24,6 +24,7 @@
             android:name=".activities.LoginActivity" />
         <activity
             android:name=".activities.PopupActivity"
+            android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Material.Dialog" />
     </application>
 
