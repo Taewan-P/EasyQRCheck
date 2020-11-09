@@ -150,7 +150,7 @@ class PopupActivity : Activity() {
         val activityManager = ctx.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val services : List<ActivityManager.AppTask> = activityManager.appTasks
         if (services.isEmpty()) return false
-        if(services.isNotEmpty() && "displayId=-1" !in services[0].taskInfo.toString()) {
+        if(services.isNotEmpty() && "displayId=-1" !in services[0].taskInfo.toString() && services[0].taskInfo.baseIntent.component.toString() == "page.chungjungsoo.easyqr/.activities.PopupActivity") {
             return true
         }
         return false
