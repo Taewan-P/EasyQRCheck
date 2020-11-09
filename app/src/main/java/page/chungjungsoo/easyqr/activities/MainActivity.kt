@@ -27,13 +27,18 @@ class MainActivity : AppCompatActivity() {
         cookieDBHandler = MyCookieDatabaseHelper(this)
 
         val cookies : String = cookieDBHandler!!.getCookies()
-        Log.d("LOADED COOKIES", cookies)
 
         if (cookies != "") {
             loginBtn.visibility = View.GONE
+            step2_layout.visibility = View.VISIBLE
+            step3_layout.visibility = View.VISIBLE
             Log.d("LOAD SUCCESSFUL", "SUCCESSFULLY LOADED EXISTING COOKIES")
         }
-        else { logoutBtn.visibility = View.GONE }
+        else {
+            logoutBtn.visibility = View.GONE
+            step2_layout.visibility = View.INVISIBLE
+            step3_layout.visibility = View.INVISIBLE
+        }
 
 
 
@@ -49,6 +54,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("DELETE SUCCESSFUL", "SUCCESSFULLY DELETED COOKIES")
                 loginBtn.visibility = View.VISIBLE
                 logoutBtn.visibility = View.GONE
+                step2_layout.visibility = View.INVISIBLE
+                step3_layout.visibility = View.INVISIBLE
             }
         }
 
@@ -68,6 +75,10 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
             shortcutManager.requestPinShortcut(shortcutInfo, null)
+            step3_layout.visibility = View.VISIBLE
+        }
+
+        close_btn.setOnClickListener {
             finishAndRemoveTask()
         }
 
@@ -103,6 +114,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d("ADD SUCCESSFUL", "SUCCESSFULLY ADDED COOKIES TO THE DATABASE.")
                         loginBtn.visibility = View.GONE
                         logoutBtn.visibility = View.VISIBLE
+                        step2_layout.visibility = View.VISIBLE
                     }
                     else {
                         Log.e("ADDING ERROR", "ERROR ADDING COOKIES TO DB")
