@@ -1,16 +1,20 @@
 package page.chungjungsoo.easyqr.activities
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.webkit.CookieManager
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.Lifecycle
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Headers
@@ -122,13 +126,17 @@ class PopupActivity : Activity() {
             time--
             if (time == 0) {
                 this.cancel()
-                runOnUiThread {
-                    finish()
-                    overridePendingTransition(0,0)
-                    if (!pressed) {
+                if (isAppInForeground(this@PopupActivity)) {
+                    runOnUiThread {
+                        finish()
+                        overridePendingTransition(0,0)
                         startActivity(intent)
                         overridePendingTransition(0,0)
+
                     }
+                }
+                else {
+                    finishAndRemoveTask()
                 }
             }
             else {
@@ -137,5 +145,14 @@ class PopupActivity : Activity() {
                 }
             }
         }
+    }
+    private fun isAppInForeground(ctx: Context): Boolean {
+        val activityManager = ctx.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val services : List<ActivityManager.AppTask> = activityManager.appTasks
+        if (services.isEmpty()) return false
+        if(services.isNotEmpty() && "displayId=-1" !in services[0].taskInfo.toString()) {
+            return true
+        }
+        return false
     }
 }
