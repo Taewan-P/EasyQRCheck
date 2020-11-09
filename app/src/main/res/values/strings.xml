@@ -5,12 +5,12 @@
     <string name="qrcheck">QR Check</string>
     <string name="login_needed">Login Needed</string>
     <string name="okay">OK</string>
-    <string name="add_to_home_screen">Add to Home Screen</string>
+    <string name="add_to_home_screen">홈 화면에 추가</string>
     <string name="step_1">Step 1. 네이버 로그인</string>
     <string name="step_2">Step 2. 홈화면에 추가</string>
     <string name="step_3">Step 3. 바로가기를 눌러 QR코드를 띄우세요!</string>
-    <string name="close_app">Close App</string>
+    <string name="close_app">앱 종료</string>
     <string name="auth_complete">인증 완료</string>
     <string name="remain_time">남은시간 :</string>
-    <string name="open_source_license">Open Source License</string>
+    <string name="open_source_license">오픈소스 라이선료</string>
 </resources>
