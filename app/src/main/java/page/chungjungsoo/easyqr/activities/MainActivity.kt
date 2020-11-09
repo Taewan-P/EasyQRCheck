@@ -1,6 +1,7 @@
 package page.chungjungsoo.easyqr.activities
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.webkit.WebView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
@@ -44,19 +46,24 @@ class MainActivity : AppCompatActivity() {
 
         loginBtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            intent.putExtra("LOGIN_TYPE", "L")
             startActivityForResult(intent, 101)
         }
 
         logoutBtn.setOnClickListener {
             val del = cookieDBHandler!!.deleteCookies()
             if (del) {
-                Toast.makeText(this, "Logged out.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
                 Log.d("DELETE SUCCESSFUL", "SUCCESSFULLY DELETED COOKIES")
                 loginBtn.visibility = View.VISIBLE
                 logoutBtn.visibility = View.GONE
                 step2_layout.visibility = View.INVISIBLE
                 step3_layout.visibility = View.INVISIBLE
             }
+            val tmp: WebView = WebView(this)
+            tmp.clearCache(true)
+//            val service: ActivityManager = this.getSystemService(ACTIVITY_SERVICE) as ActivityManager
+//            service.clearApplicationUserData()
         }
 
         testBtn.setOnClickListener{

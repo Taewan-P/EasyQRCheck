@@ -25,8 +25,11 @@ import org.jsoup.select.Elements
 import java.io.ByteArrayInputStream
 import java.net.UnknownHostException
 import java.util.*
+import kotlin.concurrent.timer
 
 class PopupActivity : Activity() {
+    private var time: Int = 15
+    private var pressed: Boolean = false
     var cookieDBHandler : MyCookieDatabaseHelper? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -79,6 +82,7 @@ class PopupActivity : Activity() {
                                 qrImageView.visibility = View.VISIBLE
                                 qrImageView.setImageBitmap(decodedByte)
                                 timeText.visibility = View.VISIBLE
+                                startTimer()
                             }
 
                         } catch (e: NullPointerException){
@@ -100,8 +104,31 @@ class PopupActivity : Activity() {
         }
 
         okBtn.setOnClickListener {
+            pressed = true
             finishAndRemoveTask()
         }
 
+    }
+    private fun startTimer() {
+        time = 15
+        val timerTask = timer(period = 1000) {
+            time--
+            if (time == 0) {
+                this.cancel()
+                runOnUiThread {
+                    finish()
+                    overridePendingTransition(0,0)
+                    if (!pressed) {
+                        startActivity(intent)
+                        overridePendingTransition(0,0)
+                    }
+                }
+            }
+            else {
+                runOnUiThread {
+                    timeText.text = "남은시간 : $time 초"
+                }
+            }
+        }
     }
 }
