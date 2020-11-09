@@ -12,4 +12,5 @@
     <string name="close_app">Close App</string>
     <string name="auth_complete">인증 완료</string>
     <string name="remain_time">남은시간 :</string>
+    <string name="open_source_license">Open Source License</string>
 </resources>

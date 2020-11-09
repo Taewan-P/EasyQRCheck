@@ -8,8 +8,11 @@ import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
 import android.widget.Toast
@@ -22,7 +25,6 @@ import page.chungjungsoo.easyqr.database.MyCookieDatabaseHelper
 
 class MainActivity : AppCompatActivity() {
     var cookieDBHandler : MyCookieDatabaseHelper? = null
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -128,5 +130,20 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.actionbar_actions, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.license -> {
+                val opensource = Intent(this, OssLicensesMenuActivity::class.java)
+                startActivity(opensource)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
