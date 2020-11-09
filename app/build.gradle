@@ -46,4 +46,6 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel:2.2.3'
     implementation 'com.github.kittinunf.fuel:fuel-coroutines:2.2.3'
 
+    // HTML parser
+    implementation 'org.jsoup:jsoup:1.11.2'
 }
