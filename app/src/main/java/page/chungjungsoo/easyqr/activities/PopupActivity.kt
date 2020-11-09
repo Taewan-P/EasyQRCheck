@@ -63,7 +63,11 @@ class PopupActivity : Activity() {
                         val ex = result.getException()
                         if (ex.exception is UnknownHostException) {
                             runOnUiThread {
-                                Toast.makeText(baseContext, "오류! 인터넷에 연결되어있지 않습니다.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    baseContext,
+                                    "오류! 인터넷에 연결되어있지 않습니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 finishAndRemoveTask()
                             }
                         }
@@ -85,9 +89,13 @@ class PopupActivity : Activity() {
                                 startTimer()
                             }
 
-                        } catch (e: NullPointerException){
+                        } catch (e: NullPointerException) {
                             runOnUiThread {
-                                Toast.makeText(baseContext, "개인정보 제공 동의 및 전화번호 인증이 필요합니다.", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    baseContext,
+                                    "개인정보 제공 동의 및 전화번호 인증이 필요합니다.",
+                                    Toast.LENGTH_LONG
+                                ).show()
                                 val intent = Intent(baseContext, LoginActivity::class.java)
                                 intent.putExtra("LOGIN_TYPE", "P")
                                 startActivity(intent)
@@ -97,8 +105,7 @@ class PopupActivity : Activity() {
                     }
                 }
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "로그인을 먼저 해주세요.", Toast.LENGTH_LONG).show()
             finishAndRemoveTask()
         }
