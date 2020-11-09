@@ -109,7 +109,6 @@ class MainActivity : AppCompatActivity() {
 
                     val added = cookieDBHandler!!.addCookies(jkl, aut, ses)
                     if (added) {
-                        Log.d("TEST","$jkl, $aut, $ses")
                         Toast.makeText(applicationContext, "Logged in successfully.", Toast.LENGTH_SHORT).show()
                         Log.d("ADD SUCCESSFUL", "SUCCESSFULLY ADDED COOKIES TO THE DATABASE.")
                         loginBtn.visibility = View.GONE
