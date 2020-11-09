@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
     compileSdkVersion 29
@@ -48,4 +49,7 @@ dependencies {
 
     // HTML parser
     implementation 'org.jsoup:jsoup:1.11.2'
+
+    // OSS License
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 }
