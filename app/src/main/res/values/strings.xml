@@ -10,4 +10,6 @@
     <string name="step_2">Step 2. 홈화면에 추가</string>
     <string name="step_3">Step 3. 바로가기를 눌러 QR코드를 띄우세요!</string>
     <string name="close_app">Close App</string>
+    <string name="auth_complete">인증 완료</string>
+    <string name="remain_time">남은시간 :</string>
 </resources>
