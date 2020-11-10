@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -79,31 +80,49 @@ class PopupActivity : Activity() {
                     }
                     is Result.Success -> {
                         val doc: Document = Jsoup.parse(result.get())
-                        try {
-                            val src = doc.getElementById("qrImage").attr("src")
-                            val base64val = src.split(", ")[1]
-                            val decoded = Base64.getDecoder().decode(base64val)
-                            val decodedByte: Bitmap =
-                                BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
-                            runOnUiThread {
-                                loading.visibility = View.GONE
-                                qrImageView.visibility = View.VISIBLE
-                                qrImageView.setImageBitmap(decodedByte)
-                                timeText.visibility = View.VISIBLE
-                                startTimer()
-                            }
-
-                        } catch (e: NullPointerException) {
+                        println(doc.getElementsByTag("title").text())
+                        if (doc.getElementsByTag("title").text() == "네이버 : 로그인") {
+                            // 자동 로그인 선택하지 않고 로그인 해서 쿠기 만료 됐을때.
                             runOnUiThread {
                                 Toast.makeText(
                                     baseContext,
-                                    "개인정보 제공 동의 및 전화번호 인증이 필요합니다.",
+                                    "로그아웃 되었습니다. 꼭 로그인 상태 유지 선택 후 로그인 해 주세요.",
                                     Toast.LENGTH_LONG
                                 ).show()
-                                val intent = Intent(baseContext, LoginActivity::class.java)
-                                intent.putExtra("LOGIN_TYPE", "P")
+                                cookieDBHandler!!.deleteCookies()
+                                val intent = Intent(baseContext, MainActivity::class.java)
+                                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
                                 startActivity(intent)
                                 finishAndRemoveTask()
+                            }
+                        }
+                        else {
+                            try {
+                                val src = doc.getElementById("qrImage").attr("src")
+                                val base64val = src.split(", ")[1]
+                                val decoded = Base64.getDecoder().decode(base64val)
+                                val decodedByte: Bitmap =
+                                    BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
+                                runOnUiThread {
+                                    loading.visibility = View.GONE
+                                    qrImageView.visibility = View.VISIBLE
+                                    qrImageView.setImageBitmap(decodedByte)
+                                    timeText.visibility = View.VISIBLE
+                                    startTimer()
+                                }
+
+                            } catch (e: NullPointerException) {
+                                runOnUiThread {
+                                    Toast.makeText(
+                                        baseContext,
+                                        "개인정보 제공 동의 및 전화번호 인증이 필요합니다.",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    val intent = Intent(baseContext, LoginActivity::class.java)
+                                    intent.putExtra("LOGIN_TYPE", "P")
+                                    startActivity(intent)
+                                    finishAndRemoveTask()
+                                }
                             }
                         }
                     }
