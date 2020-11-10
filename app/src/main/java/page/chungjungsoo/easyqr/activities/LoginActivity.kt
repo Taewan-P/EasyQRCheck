@@ -2,6 +2,7 @@ package page.chungjungsoo.easyqr.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import page.chungjungsoo.easyqr.R
+import page.chungjungsoo.easyqr.database.MyCookieDatabaseHelper
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         val loginType = intent.getStringExtra("LOGIN_TYPE")
 
         if (loginType == "L") {
+            Toast.makeText(this, "자동로그인을 꼭 체크해 주세요!", Toast.LENGTH_LONG).show()
             authBtn.visibility = View.GONE
             loginWebView.loadUrl("https://nid.naver.com/nidlogin.login")
             loginWebView.webViewClient = object : WebViewClient() {
@@ -48,11 +51,30 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "개인정보 제공 동의 및 전화번호 인증을 완료후 인증 완료 버튼을 눌러주세요.", Toast.LENGTH_LONG).show()
             loginWebView.loadUrl("https://nid.naver.com/login/privacyQR")
             loginWebView.webViewClient = object : WebViewClient() {
+                var cookieDBHandler : MyCookieDatabaseHelper? = null
                 override fun shouldOverrideUrlLoading(
                     view: WebView?,
                     request: WebResourceRequest?
                 ): Boolean {
                     return false
+                }
+
+                override fun doUpdateVisitedHistory(
+                    view: WebView?,
+                    url: String?,
+                    isReload: Boolean
+                ) {
+                    if ("https://nid.naver.com/nidlogin.login" in url.toString()) {
+                        Toast.makeText(this@LoginActivity,"로그아웃 되었습니다. 다시 로그인해 주세요.", Toast.LENGTH_LONG).show()
+                        val del = cookieDBHandler!!.deleteCookies()
+                        if (del) {
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(intent)
+                        }
+                        finishAndRemoveTask()
+
+                    }
                 }
             }
             authBtn.setOnClickListener {
