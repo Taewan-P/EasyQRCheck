@@ -126,18 +126,7 @@ class PopupActivity : Activity() {
             time--
             if (time == 0) {
                 this.cancel()
-                if (isAppInForeground(this@PopupActivity)) {
-                    runOnUiThread {
-                        finish()
-                        overridePendingTransition(0,0)
-                        startActivity(intent)
-                        overridePendingTransition(0,0)
-
-                    }
-                }
-                else {
-                    finishAndRemoveTask()
-                }
+                finishAndRemoveTask()
             }
             else {
                 runOnUiThread {
@@ -145,14 +134,5 @@ class PopupActivity : Activity() {
                 }
             }
         }
-    }
-    private fun isAppInForeground(ctx: Context): Boolean {
-        val activityManager = ctx.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val services : List<ActivityManager.AppTask> = activityManager.appTasks
-        if (services.isEmpty()) return false
-        if(services.isNotEmpty() && "displayId=-1" !in services[0].taskInfo.toString() && services[0].taskInfo.baseIntent.component.toString() == "page.chungjungsoo.easyqr/.activities.PopupActivity") {
-            return true
-        }
-        return false
     }
 }
