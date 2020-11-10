@@ -3,6 +3,7 @@ package page.chungjungsoo.easyqr.activities
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Intent
+import android.content.Intent.*
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
@@ -75,6 +76,8 @@ class MainActivity : AppCompatActivity() {
 
         addHomeBtn.setOnClickListener {
             val intent = Intent(this, PopupActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+            intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
             intent.action = "QR_SHORTCUT"
             val shortcutManager = this.getSystemService(ShortcutManager::class.java)
             val shortcutInfo = ShortcutInfo.Builder(this, "QR Check")
