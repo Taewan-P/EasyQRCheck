@@ -1,13 +1,11 @@
-package page.chungjungsoo.easyqr.activities
+package page.chungjungsoo.easyqrcheck.activities
 
 import android.app.Activity
-import android.app.ActivityManager
 import android.content.Intent
 import android.content.Intent.*
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import android.os.Bundle
@@ -17,11 +15,9 @@ import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.core.content.getSystemService
 import kotlinx.android.synthetic.main.activity_main.*
-import page.chungjungsoo.easyqr.R
-import page.chungjungsoo.easyqr.database.MyCookieDatabaseHelper
+import page.chungjungsoo.easyqrcheck.R
+import page.chungjungsoo.easyqrcheck.database.MyCookieDatabaseHelper
 
 
 class MainActivity : AppCompatActivity() {

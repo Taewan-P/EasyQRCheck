@@ -1,4 +1,4 @@
-package page.chungjungsoo.easyqr
+package page.chungjungsoo.easyqrcheck
 
 import org.junit.Test
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="page.chungjungsoo.easyqr">
+    package="page.chungjungsoo.easyqrcheck">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyQR">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="page.chungjungsoo.easyqrcheck.activities.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
             <intent-filter>
@@ -21,9 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.LoginActivity" />
+            android:name="page.chungjungsoo.easyqrcheck.activities.LoginActivity" />
         <activity
-            android:name=".activities.PopupActivity"
+            android:name="page.chungjungsoo.easyqrcheck.activities.PopupActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Material.Dialog" />
     </application>

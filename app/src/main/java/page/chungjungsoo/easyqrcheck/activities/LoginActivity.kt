@@ -1,8 +1,7 @@
-package page.chungjungsoo.easyqr.activities
+package page.chungjungsoo.easyqrcheck.activities
 
 import android.app.Activity
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,8 +9,7 @@ import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import page.chungjungsoo.easyqr.R
-import page.chungjungsoo.easyqr.database.MyCookieDatabaseHelper
+import page.chungjungsoo.easyqrcheck.R
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

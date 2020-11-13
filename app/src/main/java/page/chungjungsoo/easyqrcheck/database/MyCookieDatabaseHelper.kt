@@ -1,4 +1,4 @@
-package page.chungjungsoo.easyqr.database
+package page.chungjungsoo.easyqrcheck.database
 
 import android.content.ContentValues
 import android.content.Context
