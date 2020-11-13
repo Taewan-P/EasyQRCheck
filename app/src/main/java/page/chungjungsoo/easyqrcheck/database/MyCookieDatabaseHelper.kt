@@ -32,6 +32,7 @@ class MyCookieDatabaseHelper(context: Context)
     fun addCookies(jkl: String, aut: String, ses: String) : Boolean {
         val db = this.writableDatabase
         val values = ContentValues()
+        if (jkl == "" || aut == "" || ses == "") { return false }
         values.put(NID_JKL, jkl)
         values.put(NID_AUT, aut)
         values.put(NID_SES, ses)
