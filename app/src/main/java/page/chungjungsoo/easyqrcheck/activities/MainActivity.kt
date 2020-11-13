@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
                     val added = cookieDBHandler!!.addCookies(jkl, aut, ses)
                     if (added) {
-                        Toast.makeText(applicationContext, "Logged in successfully.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "로그인 성공", Toast.LENGTH_SHORT).show()
                         Log.d("ADD SUCCESSFUL", "SUCCESSFULLY ADDED COOKIES TO THE DATABASE.")
                         loginBtn.visibility = View.GONE
                         logoutBtn.visibility = View.VISIBLE
@@ -125,6 +125,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     else {
                         Log.e("ADDING ERROR", "ERROR ADDING COOKIES TO DB")
+                        Toast.makeText(applicationContext, "로그인 실패!", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
