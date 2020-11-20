@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <androidx.preference.SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="true"
+        android:key="brightness"
+        android:title="QR 로드시 밝기 최대 설정"
+        android:textColor="#99000000"
+        android:textSize="16sp"/>
+
+</androidx.preference.PreferenceScreen>
