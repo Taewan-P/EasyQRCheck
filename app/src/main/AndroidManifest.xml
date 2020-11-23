@@ -26,6 +26,12 @@
             android:name="page.chungjungsoo.easyqrcheck.activities.PopupActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Material.Dialog" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/Theme.EasyQR" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/Theme.EasyQR" />
     </application>
 
 </manifest>
