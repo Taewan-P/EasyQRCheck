@@ -7,8 +7,6 @@
         app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="brightness"
-        android:title="QR 로드시 밝기 최대 설정"
-        android:textColor="#99000000"
-        android:textSize="16sp"/>
+        android:title="QR 로드시 최대 밝기 설정" />
 
 </androidx.preference.PreferenceScreen>
