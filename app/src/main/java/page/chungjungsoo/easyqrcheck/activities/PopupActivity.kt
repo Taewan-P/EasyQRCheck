@@ -8,11 +8,11 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.view.Window
 import android.webkit.CookieManager
 import android.widget.Toast
-import androidx.preference.*
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Headers
 import com.github.kittinunf.result.Result
@@ -33,10 +33,13 @@ class PopupActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_popup)
+        super.onCreate(savedInstanceState)
 
         val pref : SharedPreferences = getSharedPreferences("page.chungjungsoo.easyqrcheck_preferences", MODE_PRIVATE)
         val bright = pref.getBoolean("brightness", true)
-        super.onCreate(savedInstanceState)
+
+        if (bright) { window.attributes.screenBrightness = 1.0f }
+
         val scope = CoroutineScope(Dispatchers.Main)
         cookieDBHandler = MyCookieDatabaseHelper(this)
 
