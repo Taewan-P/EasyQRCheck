@@ -14,6 +14,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
+import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import page.chungjungsoo.easyqrcheck.R
@@ -25,23 +26,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.setting_frame, PreferenceFragment())
+            .commit()
         cookieDBHandler = MyCookieDatabaseHelper(this)
 
         val cookies : String = cookieDBHandler!!.getCookies()
 
         if (cookies != "") {
-            loginBtn.visibility = View.GONE
-            step2_layout.visibility = View.VISIBLE
-            step3_layout.visibility = View.VISIBLE
+            loadLoginLayout()
             Log.d("LOAD SUCCESSFUL", "SUCCESSFULLY LOADED EXISTING COOKIES")
         }
         else {
-            logoutBtn.visibility = View.GONE
-            step2_layout.visibility = View.INVISIBLE
-            step3_layout.visibility = View.INVISIBLE
+            loadLogoutLayout()
         }
 
-
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.setting_frame, PreferenceFragment())
+            .commit()
 
         loginBtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -54,15 +58,10 @@ class MainActivity : AppCompatActivity() {
             if (del) {
                 Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
                 Log.d("DELETE SUCCESSFUL", "SUCCESSFULLY DELETED COOKIES")
-                loginBtn.visibility = View.VISIBLE
-                logoutBtn.visibility = View.GONE
-                step2_layout.visibility = View.INVISIBLE
-                step3_layout.visibility = View.INVISIBLE
+                loadLogoutLayout()
             }
             val tmp: WebView = WebView(this)
             tmp.clearCache(true)
-//            val service: ActivityManager = this.getSystemService(ACTIVITY_SERVICE) as ActivityManager
-//            service.clearApplicationUserData()
         }
 
         testBtn.setOnClickListener{
@@ -91,6 +90,20 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    fun loadLoginLayout() {
+        loginBtn.visibility = View.GONE
+        logoutBtn.visibility = View.VISIBLE
+        step2_layout.visibility = View.VISIBLE
+        step3_layout.visibility = View.VISIBLE
+    }
+
+    fun loadLogoutLayout() {
+        loginBtn.visibility = View.VISIBLE
+        logoutBtn.visibility = View.GONE
+        step2_layout.visibility = View.INVISIBLE
+        step3_layout.visibility = View.INVISIBLE
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
