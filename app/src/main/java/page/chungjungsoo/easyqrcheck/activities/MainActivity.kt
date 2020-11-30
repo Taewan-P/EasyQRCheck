@@ -14,7 +14,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
-import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import page.chungjungsoo.easyqrcheck.R
@@ -83,6 +82,7 @@ class MainActivity : AppCompatActivity() {
 
             shortcutManager.requestPinShortcut(shortcutInfo, null)
             step3_layout.visibility = View.VISIBLE
+            step4_layout.visibility = View.VISIBLE
         }
 
         close_btn.setOnClickListener {
@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
         logoutBtn.visibility = View.VISIBLE
         step2_layout.visibility = View.VISIBLE
         step3_layout.visibility = View.VISIBLE
+        step4_layout.visibility = View.VISIBLE
     }
 
     fun loadLogoutLayout() {
@@ -102,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         logoutBtn.visibility = View.GONE
         step2_layout.visibility = View.INVISIBLE
         step3_layout.visibility = View.INVISIBLE
+        step4_layout.visibility = View.INVISIBLE
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

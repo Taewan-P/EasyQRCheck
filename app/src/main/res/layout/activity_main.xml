@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TextView
                 android:layout_width="match_parent"
@@ -117,12 +117,10 @@
                 android:layout_marginBottom="15dp"
                 android:text="@string/step_3" />
 
-            <Button
-                android:id="@+id/close_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/close_app" />
+            <FrameLayout
+                android:id="@+id/setting_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
@@ -136,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -144,10 +142,12 @@
                 android:layout_marginBottom="15dp"
                 android:text="@string/step_4" />
 
-            <FrameLayout
-                android:id="@+id/setting_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/close_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/close_app" />
 
 
         </LinearLayout>
