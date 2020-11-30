@@ -1,8 +1,10 @@
 package page.chungjungsoo.easyqrcheck.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -71,7 +73,6 @@ class PopupActivity : Activity() {
                     }
                     is Result.Success -> {
                         val doc: Document = Jsoup.parse(result.get())
-                        println(doc.getElementsByTag("title").text())
                         if (doc.getElementsByTag("title").text() == "네이버 : 로그인") {
                             // 자동 로그인 선택하지 않고 로그인 해서 쿠기 만료 됐을때.
                             runOnUiThread {
