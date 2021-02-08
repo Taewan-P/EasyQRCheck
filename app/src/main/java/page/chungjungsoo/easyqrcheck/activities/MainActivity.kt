@@ -116,31 +116,40 @@ class MainActivity : AppCompatActivity() {
                     var jkl = ""
                     var aut = ""
                     var ses = ""
+                    var success = true
                     for (name in cookieArr) {
-                        when (name.substring(0..6)) {
-                            "NID_JKL" -> {
-                                jkl = name.substring(8 until name.length)
+                        try {
+                            when (name.substring(0..6)) {
+                                "NID_JKL" -> {
+                                    jkl = name.substring(8 until name.length)
+                                }
+                                "NID_AUT" -> {
+                                    aut = name.substring(8 until name.length)
+                                }
+                                "NID_SES" -> {
+                                    ses = name.substring(8 until name.length)
+                                }
                             }
-                            "NID_AUT" -> {
-                                aut = name.substring(8 until name.length)
-                            }
-                            "NID_SES" -> {
-                                ses = name.substring(8 until name.length)
-                            }
+                        } catch (e: StringIndexOutOfBoundsException) {
+                            Log.e("STRING ERROR", "STRING INDEX OUT OF BOUND")
+                            success = false
                         }
                     }
-
-                    val added = cookieDBHandler!!.addCookies(jkl, aut, ses)
-                    if (added) {
-                        Toast.makeText(applicationContext, "로그인 성공", Toast.LENGTH_SHORT).show()
-                        Log.d("ADD SUCCESSFUL", "SUCCESSFULLY ADDED COOKIES TO THE DATABASE.")
-                        loginBtn.visibility = View.GONE
-                        logoutBtn.visibility = View.VISIBLE
-                        step2_layout.visibility = View.VISIBLE
+                    if (success) {
+                        val added = cookieDBHandler!!.addCookies(jkl, aut, ses)
+                        if (added) {
+                            Toast.makeText(applicationContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+                            Log.d("ADD SUCCESSFUL", "SUCCESSFULLY ADDED COOKIES TO THE DATABASE.")
+                            loginBtn.visibility = View.GONE
+                            logoutBtn.visibility = View.VISIBLE
+                            step2_layout.visibility = View.VISIBLE
+                        } else {
+                            Log.e("ADDING ERROR", "ERROR ADDING COOKIES TO DB")
+                            Toast.makeText(applicationContext, "로그인 실패!", Toast.LENGTH_SHORT).show()
+                        }
                     }
                     else {
-                        Log.e("ADDING ERROR", "ERROR ADDING COOKIES TO DB")
-                        Toast.makeText(applicationContext, "로그인 실패!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "로그인 정보를 받아오는데 실패하였습니다. 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
                     }
                 }
             }
