@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             intent.action = "QR_SHORTCUT"
             val shortcutManager = this.getSystemService(ShortcutManager::class.java)
             val shortcutInfo = ShortcutInfo.Builder(this, "QR Check")
-                .setIcon(Icon.createWithResource(this, R.drawable.qr_vector))
+                .setIcon(Icon.createWithResource(this, R.mipmap.shortcut))
                 .setShortLabel("QR Check")
                 .setIntent(intent)
                 .build()
