@@ -132,6 +132,9 @@ class MainActivity : AppCompatActivity() {
                             }
                         } catch (e: StringIndexOutOfBoundsException) {
                             Log.e("STRING ERROR", "STRING INDEX OUT OF BOUND")
+                            cookieDBHandler!!.deleteCookies()
+                            val tmp: WebView = WebView(this)
+                            tmp.clearCache(true)
                             success = false
                         }
                     }
