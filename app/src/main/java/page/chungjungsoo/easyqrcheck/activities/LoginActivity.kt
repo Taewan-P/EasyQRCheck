@@ -59,16 +59,16 @@ class LoginActivity : AppCompatActivity() {
                     // We will check if SMS verification has succeeded
                     Log.d("WEBSITE: ", url.toString())
 
-                    if (url?.contains("https://nid.naver.com/iasystem/mobile_pop.nhn") == true) {
-                        success = true
-                    }
-                    else {
-                        if (success) {
-                            if (url?.contains("https://nid.naver.com/login/privacyQR?term=on&ownAuthSession=") == true) {
-                                finishVerification()
-                            }
-                            else {
-                                loginWebView.loadUrl("https://nid.naver.com/login/privacyQR")
+                    if (url != null) {
+                        if ("https://nid.naver.com/iasystem/mobile_pop.nhn" in url) {
+                            success = true
+                        } else {
+                            if (success) {
+                                if ("https://nid.naver.com/login/privacyQR?term=on&ownAuthSession=" in url) {
+                                    finishVerification()
+                                } else {
+                                    loginWebView.loadUrl("https://nid.naver.com/login/privacyQR")
+                                }
                             }
                         }
                     }
