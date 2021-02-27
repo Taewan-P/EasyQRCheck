@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    fun loadLoginLayout() {
+    private fun loadLoginLayout() {
         loginBtn.visibility = View.GONE
         logoutBtn.visibility = View.VISIBLE
         step2_layout.visibility = View.VISIBLE
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         step4_layout.visibility = View.VISIBLE
     }
 
-    fun loadLogoutLayout() {
+    private fun loadLogoutLayout() {
         loginBtn.visibility = View.VISIBLE
         logoutBtn.visibility = View.GONE
         step2_layout.visibility = View.INVISIBLE
