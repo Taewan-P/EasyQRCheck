@@ -1,5 +1,6 @@
 package page.chungjungsoo.easyqrcheck.activities
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import page.chungjungsoo.easyqrcheck.R
 
 class LoginActivity : AppCompatActivity() {
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.title = "Login to NAVER"
         super.onCreate(savedInstanceState)
@@ -44,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
         else if (loginType == "P") {
             // Phone Verification
             supportActionBar?.title = "NAVER Authentication Page"
-            Toast.makeText(this, "개인정보 제공 동의 및 전화번호 인증을 완료후 인증 완료 버튼을 눌러주세요.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "개인정보 제공 동의 및 전화번호 인증을 해주세요", Toast.LENGTH_LONG).show()
             loginWebView.loadUrl("https://nid.naver.com/login/privacyQR")
             loginWebView.webViewClient = object : WebViewClient() {
                 var success: Boolean = false
