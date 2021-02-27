@@ -9,16 +9,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/authBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="#1EC800"
-        android:textColor="#FFFFFF"
-        android:text="@string/auth_complete"
-        android:textStyle="bold" />
-
 </RelativeLayout>
