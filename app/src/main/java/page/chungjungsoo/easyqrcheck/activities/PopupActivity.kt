@@ -25,6 +25,10 @@ import org.jsoup.nodes.Document
 import java.net.UnknownHostException
 import java.util.*
 import kotlin.concurrent.timer
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 
 class PopupActivity : Activity() {
     private var time: Int = 15
@@ -34,6 +38,7 @@ class PopupActivity : Activity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_popup)
         super.onCreate(savedInstanceState)
+        MobileAds.initialize(this) {}
 
         val pref : SharedPreferences = getSharedPreferences("page.chungjungsoo.easyqrcheck_preferences", MODE_PRIVATE)
         val bright = pref.getBoolean("brightness", true)
@@ -131,6 +136,8 @@ class PopupActivity : Activity() {
             Toast.makeText(this, "로그인을 먼저 해주세요.", Toast.LENGTH_LONG).show()
             finishAndRemoveTask()
         }
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         okBtn.setOnClickListener {
             pressed = true
@@ -152,5 +159,11 @@ class PopupActivity : Activity() {
                 }
             }
         }
+    }
+
+    // AdMob Destroy when activity is destroyed
+    public override fun onDestroy() {
+        adView.destroy()
+        super.onDestroy()
     }
 }

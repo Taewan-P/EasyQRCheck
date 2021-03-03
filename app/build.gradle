@@ -53,4 +53,7 @@ dependencies {
 
     // OSS License
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+
+    // AdMob
+    implementation 'com.google.android.gms:play-services-ads:19.7.0'
 }

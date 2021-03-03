@@ -32,6 +32,9 @@
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/Theme.EasyQR" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5848567527659281~7588172176"/>
     </application>
 
 </manifest>
